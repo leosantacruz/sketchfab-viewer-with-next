@@ -64,7 +64,7 @@ export default function Controls({ apiRef, materialList }) {
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-0x">
                 {colorOptions.map(option => {
-                    return <button className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor(option.color)}>  <div className={`badge badge-${option.className} mr-4`}></div>{option.name}
+                    return <button key={option.name} className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor(option.color)}>  <div className={`badge badge-${option.className} mr-4`}></div>{option.name}
                     </button>
                 })}
             </div>
