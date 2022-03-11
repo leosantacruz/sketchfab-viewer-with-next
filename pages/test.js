@@ -20,7 +20,7 @@ export default function test() {
                 </div>
 
                 <div className="mt-5 text-center">
-                    <label class="swap swap-flip text-9xl">
+                    <label className="swap swap-flip text-9xl">
 
                         <input type="checkbox" />
 
