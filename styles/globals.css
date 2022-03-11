@@ -5,3 +5,7 @@
 iframe#api-frame {
   height: calc(100vh - 150px);
 }
+
+.hero {
+  background-image: url(https://api.lorem.space/image/furniture?w=1000&h=800);
+}
