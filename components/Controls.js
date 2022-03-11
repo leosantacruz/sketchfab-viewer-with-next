@@ -3,10 +3,10 @@ export default function Controls({ apiRef, materialList }) {
     const [darkBackground, setDarkBackground] = useState()
     const [selectedMaterial, setSelectedMaterial] = useState()
     const colorOptions = [
-        { name: "Aqua", color: [32, 177, 166], className: "accent" },
-        { name: "Pink", color: [216, 39, 169], className: "secondary" },
-        { name: "Blue", color: [58, 190, 248], className: "info" },
-        { name: "Yellow", color: [251, 188, 35], className: "warning" },
+        { name: "Aqua", color: [32, 177, 166], classColor: "badge badge-accent mr-4 " },
+        { name: "Pink", color: [216, 39, 169], classColor: "badge badge-secondary mr-4 " },
+        { name: "Blue", color: [58, 190, 248], classColor: "badge badge-info mr-4 " },
+        { name: "Yellow", color: [251, 188, 35], classColor: "badge badge-warning mr-4 " },
     ]
 
     const defaultCamaraPosition = {
@@ -64,7 +64,7 @@ export default function Controls({ apiRef, materialList }) {
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-0x">
                 {colorOptions.map(option => {
-                    return <button key={option.name} className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor(option.color)}>  <div className={`badge badge-${option.className} mr-4`}></div>{option.name}
+                    return <button key={option.name} className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor(option.color)}>  <div className={option.classColor}></div>{option.name}
                     </button>
                 })}
             </div>
