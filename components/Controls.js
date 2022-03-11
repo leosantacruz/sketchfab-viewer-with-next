@@ -56,16 +56,16 @@ export default function Controls({ apiRef, materialList }) {
                     </ul>
                 }
             </div>
-
-            <button className="btn btn-block mb-3 justify-start" onClick={() => changeGroupColor([32, 177, 166])}>  <div className="badge badge-accent mr-4"></div>Aqua
-            </button>
-            <button className="btn btn-block mb-3  justify-start" onClick={() => changeGroupColor([216, 39, 169])}>  <div className="badge badge-secondary mr-4"></div>Pink
-            </button>
-            <button className="btn btn-block mb-3  justify-start" onClick={() => changeGroupColor([58, 190, 248])}>  <div className="badge badge-info mr-4"></div>Blue
-            </button>
-            <button className="btn btn-block mb-3  justify-start" onClick={() => changeGroupColor([251, 188, 35])}>  <div className="badge badge-warning mr-4"></div>Yellow
-            </button>
-
+            <div className="grid grid-cols-2 gap-3 md:gap-0">
+                <button className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor([32, 177, 166])}>  <div className="badge badge-accent mr-4"></div>Aqua
+                </button>
+                <button className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor([216, 39, 169])}>  <div className="badge badge-secondary mr-4"></div>Pink
+                </button>
+                <button className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor([58, 190, 248])}>  <div className="badge badge-info mr-4"></div>Blue
+                </button>
+                <button className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor([251, 188, 35])}>  <div className="badge badge-warning mr-4"></div>Yellow
+                </button>
+            </div>
             <button className="btn btn-block mb-3" onClick={setCameraPosition}>Close up</button>
             <div className="text-center">
 

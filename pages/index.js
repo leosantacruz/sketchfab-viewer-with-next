@@ -26,10 +26,10 @@ export default function Home() {
       <div className="bg-gray-900 min-h-screen flex flex-col">
 
         <div className="grid grid-cols-4 gap-6 row-auto p-5">
-          <div className="col-span-1 bg-gray-800 p-3 rounded">
+          <div className="md:col-span-1 col-span-4 bg-gray-800 p-3 rounded">
             <Controls apiRef={apiRef} materialList={materialList} />
           </div>
-          <div className="col-span-3 bg-gray-800 p-3 rounded">
+          <div className="md:col-span-3 col-span-4 bg-gray-800 p-3 rounded">
             <Viewer apiRef={apiRef} modelId={modelId} setIsModelLoaded={setIsModelLoaded} />
           </div>
         </div>

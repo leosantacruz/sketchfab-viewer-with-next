@@ -6,7 +6,7 @@ export default function Navbar() {
                 <img width="140" src="https://static.sketchfab.com/img/press/logos/sketchfab-logo-text-white.svg" alt="Sketchfab logo" />
             </div>
             <div className="flex-none">
-                <a href="https://ibisdev.tech/" className="btn btn-primary">Visit our website</a>
+                <a href="https://ibisdev.tech/" className="btn btn-primary btn-xs md:btn-sm">Visit our website</a>
             </div>
         </div>
     )
