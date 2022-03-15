@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function Controls({ apiRef, materialList }) {
+export default function Controls({ apiRef, materialList, nodeList, colorList, cameraPositions }) {
     const [darkBackground, setDarkBackground] = useState()
     const [selectedMaterial, setSelectedMaterial] = useState()
     const colorOptions = [
@@ -9,16 +9,15 @@ export default function Controls({ apiRef, materialList }) {
         { name: "Yellow", color: [251, 188, 35], classColor: "badge-warning" },
     ]
 
-    const defaultCamaraPosition = {
-        position: [-0.07422821498173426, -0.667373392962512, 0.6363603975021233],
-        target: [0.2221558569363637, -0.04370469737132048, -0.03924365014719243]
-    }
+
 
     const changeMaterialColor = (color) => {
-        materialList[selectedMaterial - 1].channels.AlbedoPBR.color = [color[0] / 255, color[1] / 255, color[2] / 255, 1]
-        apiRef.current.setMaterial(materialList[selectedMaterial - 1], () => {
-            console.log("Updated chair color");
-        });
+        nodeList.forEach((index) => {
+            materialList[index].channels.AlbedoPBR.color = [color[0] / 255, color[1] / 255, color[2] / 255, 1]
+            apiRef.current.setMaterial(materialList[index], () => {
+                console.log("Updated chair color");
+            });
+        })
     };
 
     const changeGroupColor = (color) => {
@@ -39,8 +38,16 @@ export default function Controls({ apiRef, materialList }) {
         });
     };
 
-    const setCameraPosition = () => {
-        apiRef.current.setCameraLookAt(defaultCamaraPosition.position, defaultCamaraPosition.target, 4, function (err) {
+    const getCameraPosition = () => {
+        apiRef.current.getCameraLookAt(function (err, camera) {
+            window.console.log(camera.position); // [x, y, z]
+            window.console.log(camera.target); // [x, y, z]
+        });
+
+    }
+
+    const setCameraPosition = (index) => {
+        apiRef.current.setCameraLookAt(cameraPositions[index].position, cameraPositions[index].target, 4, function (err) {
             if (!err) {
                 window.console.log('Camera moved');
             }
@@ -48,7 +55,6 @@ export default function Controls({ apiRef, materialList }) {
     }
     return (
         <>
-            <div className="text-center my-4"><strong>Choose a color</strong></div>
             <div className="dropdown btn-block mb-3 hidden">
                 <button className="btn btn-primary btn-block" onClick={() => setSelectedMaterial()}>{selectedMaterial ? materialList[selectedMaterial - 1].name : 'Choose a material'}</button>
                 {
@@ -63,12 +69,15 @@ export default function Controls({ apiRef, materialList }) {
                 }
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-0x">
-                {colorOptions.map(option => {
-                    return <button key={option.name} className="btn md:col-span-2 col-span-1 mb-3 justify-start" onClick={() => changeGroupColor(option.color)}>  <div className={`badge mr-4 ${option.classColor}`}></div>{option.name}
+                {colorList.map((option, index) => {
+                    return <button key={option} className="btn btn-default col-span-1 mb-3 justify-start" onClick={() => changeMaterialColor(option)}>  <div className="badge mx-auto" style={{ backgroundColor: `rgb(${option[0]},${option[1]},${option[2]})` }}></div>
                     </button>
                 })}
             </div>
-            <button className="btn btn-block mb-3" onClick={setCameraPosition}>Close up</button>
+            <button className="hidden btn btn-block mb-3" onClick={getCameraPosition}>get camera position</button>
+            <button className="btn btn-block mb-3" onClick={() => setCameraPosition(0)}>Set camera 1</button>
+
+            <button className="btn btn-block mb-3" onClick={() => setCameraPosition(1)}>Set camera 2</button>
             <div className="text-center">
                 <label className="swap swap-rotate">
                     <input type="checkbox" onClick={toggleDarkMode} />
